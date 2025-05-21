@@ -1,0 +1,22 @@
+{
+  "name": "coffe-stars",
+  "version": "1.0.0",
+  "description": "Cafetería Coffee Star's con temática del espacio exterior.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build process not defined yet.'"
+  },
+  "keywords": [
+    "cafetería",
+    "café",
+    "espacio",
+    "tienda en línea"
+  ],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}

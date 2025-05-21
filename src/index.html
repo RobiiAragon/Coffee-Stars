@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Star's</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul style="display:flex;align-items:center;gap:1em;justify-content:space-between; margin-left:5%;margin-right:5%;">
+                <li>
+                    <a href="index.html" style="display:flex;align-items:center;gap:0.5em;text-decoration:none;">
+                        <img src="images/Coffee Star's logo.png" alt="Logo Coffee Star's" style="width:48px;height:48px;border-radius:50%;background:#232323;object-fit:cover;border:2px solid #CFB53B;">
+                        <span style="color:#fff;display:inline;margin:0;font-size:2em;font-weight:bold;">Coffee Star's</span>
+                    </a>
+                </li>
+                <div style="display:flex;align-items:center;gap:1em;">
+                    <li><button id="menu-button" class="nav-btn"></button></li>
+                    <li><button id="tienda-button" class="nav-btn"></button></li>
+                    <li><button id="about-button" class="nav-btn">Sobre Nosotros</button></li>
+                    <li>
+                        <button id="carrito-button" class="nav-btn">
+                            🛒 Carrito <span id="carrito-count">0</span>
+                        </button>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="background:#121212;">
+        <div id="content">
+            <!-- El contenido dinámico se cargará aquí -->
+            <section id="menu">
+                <h2>Menú Coffe Galaxy</h2>
+                <ul>
+                    <li>Black Hole</li>
+                    <li>Saturno Canela</li>
+                    <li>Cometa de Caramelo</li>
+                    <li>Café Andrómeda</li>
+                </ul>
+            </section>
+
+            <section id="tienda">
+                <h2>Tienda en Línea</h2>
+                <p>Visita nuestra tienda para comprar tus bebidas favoritas y más productos relacionados con el espacio.</p>
+                <a href="components/tienda.html" class="btn">Ir a la Tienda</a>
+            </section>
+
+            <section id="about">
+                <h2>Sobre Nosotros</h2>
+                <p>En Coffee Star's, te llevamos a un viaje por el espacio con cada sorbo. Nuestra temática de espacio exterior te hará sentir como si estuvieras disfrutando de tu café entre las estrellas.</p>
+                <a href="components/about.html" class="btn">Leer Más</a>
+            </section>
+        </div>
+    </main>
+
+    <footer style="background:#1F1F1F; color:#B0B0B0; text-align:center; padding:20px 0; border-top:2px solid #CFB53B;">
+        <p style="margin:0;">&copy; 2023 Coffee Star's. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
