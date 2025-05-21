@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Eventos de navegación
-    menuButton.addEventListener('click', () => loadComponent('components/menu.html'));
+    menuButton.addEventListener('click', () => loadComponent('components/menu.html', tiendaEvents));
     tiendaButton.addEventListener('click', () => {
         loadComponent('components/tienda.html', tiendaEvents);
     });
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Cargar menú por defecto
-    loadComponent('components/menu.html');
+    loadComponent('components/menu.html', tiendaEvents);
 
     // Inicializar contador
     actualizarCarritoCount();
