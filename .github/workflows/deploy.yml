@@ -1,15 +1,28 @@
 name: Deploy to GH Pages
+
+# Grant the workflow explicit write access to contents and pages
+permissions:
+  contents: write
+  pages: write
+
 on:
   push:
     branches: [ main ]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          # Prevent checkout from using its own token
+          persist-credentials: false
+          fetch-depth: 0
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
+          # uses the GITHUB_TOKEN with the permissions above
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
           publish_branch: gh-pages
