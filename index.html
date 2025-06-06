@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Star's</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <base href=".">
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <header>
+        <nav>
+            <ul style="display:flex;align-items:center;justify-content:space-between; margin:0 5%;">
+                <li>
+                    <a href="index.html" style="display:flex;align-items:center;gap:0.5em;text-decoration:none;">
+                        <img src="images/Coffee Star's logo.png" alt="Logo Coffee Star's" style="width:48px;height:48px;border-radius:50%;background:#232323;object-fit:cover;border:2px solid #CFB53B;">
+                        <span style="color:#fff;display:inline;margin:0;font-size:2em;font-weight:bold;">Coffee Star's</span>
+                    </a>
+                </li>
+                <li>
+                    <button id="hamburger-btn" class="hamburger-btn">☰</button>
+                </li>
+            </ul>
+            <div id="nav-menu" class="nav-menu">
+                <button id="tienda-button" class="nav-btn">Tienda</button>
+                <button id="about-button" class="nav-btn">Sobre Nosotros</button>
+                <button id="carrito-button" class="nav-btn">
+                    🛒 Carrito <span id="carrito-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main style="background:#1212127c;">
+        <div id="content">
+            <!-- El contenido dinámico se cargará aquí -->
+        </div>
+    </main>
+
+    <footer style="background:#1f1f1f56; color:#dddddd; text-align:center; padding:20px 0; border-top:2px solid #CFB53B;">
+        <p style="margin:0;">&copy; 2025 Coffee Star's. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
