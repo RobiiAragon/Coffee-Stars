@@ -1,4 +1,44 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Init starfield
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    function initStars() {
+        stars = [];
+        for (let i = 0; i < 200; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 1.5 + 0.5,
+                speed: Math.random() * 0.5 + 0.2
+            });
+        }
+    }
+    function animateStars() {
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#FFF';
+        stars.forEach(s => {
+            s.y -= s.speed;
+            if (s.y < 0) s.y = canvas.height;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        requestAnimationFrame(animateStars);
+    }
+    window.addEventListener('resize', () => {
+        resize();
+        initStars();
+    });
+    resize();
+    initStars();
+    animateStars();
+
     // Botones de navegación
     const tiendaButton = document.getElementById('tienda-button');
     const aboutButton = document.getElementById('about-button');
@@ -19,15 +59,19 @@ document.addEventListener('DOMContentLoaded', function() {
         actualizarCarritoCount();
     }
 
-    // SPA: Cargar componentes
+    // SPA: Cargar sólo la sección interna de cada componente
     function loadComponent(url, callback) {
         fetch(url)
-            .then(response => response.text())
-            .then(data => {
-                contentDiv.innerHTML = data;
+            .then(res => res.text())
+            .then(htmlString => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlString, 'text/html');
+                // Tomamos sólo la primera sección (o, si no hay, todo el body)
+                const fragment = doc.querySelector('section') || doc.body;
+                contentDiv.innerHTML = fragment.innerHTML;
                 if (callback) callback();
             })
-            .catch(error => {
+            .catch(() => {
                 contentDiv.innerHTML = '<p>Error cargando el contenido.</p>';
             });
     }
@@ -65,6 +109,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // precarga el sonido (sitúalo en /sounds/add-cart.mp3)
+    const addSound = new Audio('sounds/add-cart.mp3');
+    addSound.preload = 'auto';
+
     // Añadir producto al carrito
     function tiendaEvents() {
         const botones = contentDiv.querySelectorAll('.add-carrito');
@@ -83,7 +131,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     carrito.push(producto);
                 }
                 guardarCarrito();
-                alert('Producto añadido al carrito');
+
+                // reproducir sonido
+                addSound.currentTime = 0;
+                addSound.play();
+
+                // animación pop+estrellas
+                this.classList.add('animate-add');
+                this.addEventListener('animationend', () => {
+                    this.classList.remove('animate-add');
+                }, { once: true });
+                // burst de estrellas
+                createStars(this);
             });
         });
     }
@@ -186,11 +245,33 @@ document.addEventListener('DOMContentLoaded', function() {
         y += 10;
         doc.setFontSize(10);
         doc.text('Esta página web es una prueba y el recibo no es válido para una compra real.', 14, y);
-        doc.save('recibo_coffee_stars.pdf');
+        // abrir PDF en nueva pestaña
+        doc.output('dataurlnewwindow');
+
         // Mostrar mensaje en la web
         const reciboDiv = document.getElementById('recibo-container');
         if (reciboDiv) {
-            reciboDiv.innerHTML = '<span style="color:#CFB53B;">Recibo generado y descargado en PDF.</span>';
+            reciboDiv.innerHTML = '<span style="color:#CFB53B;">Recibo generado y abierto en una nueva pestaña.</span>';
+        }
+    }
+
+    // generar y animar estrellas
+    function createStars(button) {
+        for (let i = 0; i < 6; i++) {
+            const star = document.createElement('span');
+            star.classList.add('star');
+            star.textContent = '⭐';
+            // trayectoria aleatoria
+            const angle = Math.random() * 2 * Math.PI;
+            const dist = 30 + Math.random() * 20; // 30–50px
+            const tx = Math.cos(angle) * dist;
+            const ty = Math.sin(angle) * dist;
+            star.style.setProperty('--tx', `${tx}px`);
+            star.style.setProperty('--ty', `${ty}px`);
+            button.appendChild(star);
+            star.addEventListener('animationend', () => {
+                star.remove();
+            });
         }
     }
 

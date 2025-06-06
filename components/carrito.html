@@ -1,21 +1,27 @@
-<section class="carrito">
-    <h2>Carrito de Compras</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Precio unitario</th>
-                <th>Subtotal</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="carrito-body">
-            <!-- Productos del carrito aquí -->
-        </tbody>
-    </table>
-    <p>Total: <span id="carrito-total">$0.00</span></p>
-    <button id="vaciar-carrito">Vaciar carrito</button>
-    <button id="checkout-carrito" style="margin-left:16px;">Checkout</button>
-    <div id="recibo-container" style="margin-top:24px;"></div>
+<section id="carrito" class="cart-container">
+    <h2>Tu Carrito</h2>
+    <div class="cart-table-wrapper">
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="carrito-body">
+                <!-- Productos del carrito aquí -->
+            </tbody>
+        </table>
+    </div>
+    <div class="cart-summary">
+        <span>Total:</span>
+        <span id="carrito-total">$0.00</span>
+    </div>
+    <div class="cart-actions">
+        <button id="vaciar-carrito" class="btn btn-secondary">Vaciar</button>
+        <button id="checkout-carrito" class="btn btn-primary">Pagar Ahora</button>
+    </div>
 </section>
