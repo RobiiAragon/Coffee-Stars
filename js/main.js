@@ -42,6 +42,25 @@ document.addEventListener('DOMContentLoaded', function() {
         loadComponent('components/carrito.html', mostrarCarrito);
     });
 
+    // Toggle del menú al hacer clic
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburgerBtn.addEventListener('click', () => {
+        // alterna entre mostrar y ocultar el menú
+        navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    // Cerrar el submenú al hacer clic fuera de él
+    document.addEventListener('click', (e) => {
+        const isOpen = navMenu.style.display === 'flex';
+        const clickedInsideMenu = navMenu.contains(e.target);
+        const clickedHamburger = e.target === hamburgerBtn;
+        if (isOpen && !clickedInsideMenu && !clickedHamburger) {
+            navMenu.style.display = 'none';
+        }
+    });
+
     // Añadir producto al carrito
     function tiendaEvents() {
         const botones = contentDiv.querySelectorAll('.add-carrito');

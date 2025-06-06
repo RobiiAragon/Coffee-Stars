@@ -262,9 +262,94 @@ nav ul {
     margin-top: 18px;
 }
 
+/* Estilos para el menú hamburguesa */
+.hamburger-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+.nav-menu {
+    display: none;
+    flex-direction: column;
+    gap: 1em;
+    position: absolute;
+    top: 60px;
+    right: 5%;
+    background: #121212;
+    padding: 1em;
+    border: 1px solid #CFB53B;
+    border-radius: 4px;
+}
+
+.nav-menu.show {
+    display: flex;
+}
+
+/* Espacio interior en el contenedor principal */
+#content {
+    padding: 1rem 5%;
+}
+
+/* Separación vertical entre secciones */
+#content > section {
+    margin: 2rem 0;
+}
+
 /* Responsividad */
 @media (max-width: 768px) {
     .menu-list {
         grid-template-columns: 1fr;
     }
+}
+
+/* Responsive: tablet y móviles grandes */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1em 2%;
+  }
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5em;
+    margin-top: 1em;
+  }
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+  .main-content {
+    padding: 1.5em 3%;
+  }
+  .productos-grid {
+    gap: 16px;
+  }
+}
+
+/* Responsive: móviles pequeños */
+@media (max-width: 480px) {
+  .logo img {
+    width: 40px;
+    height: 40px;
+  }
+  .logo span {
+    font-size: 1.2em;
+  }
+  .nav-btn {
+    font-size: 0.9em;
+    padding: 6px 12px;
+  }
+  .section-title {
+    font-size: 1.5em;
+  }
+  .section-description {
+    font-size: 1em;
+  }
+  .productos-grid {
+    grid-template-columns: 1fr;
+  }
 }
