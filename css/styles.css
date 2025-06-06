@@ -273,15 +273,16 @@ nav ul {
 
 .nav-menu {
     display: none;
+    position: absolute;
+    top: 60px;       /* altura justo debajo del header */
+    right: 5%;
     flex-direction: column;
     gap: 1em;
-    position: absolute;
-    top: 60px;
-    right: 5%;
     background: #121212;
     padding: 1em;
     border: 1px solid #CFB53B;
     border-radius: 4px;
+    z-index: 1000;
 }
 
 .nav-menu.show {

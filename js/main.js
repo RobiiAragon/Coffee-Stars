@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Botones de navegación
-    const menuButton = document.getElementById('menu-button');
     const tiendaButton = document.getElementById('tienda-button');
     const aboutButton = document.getElementById('about-button');
     const carritoButton = document.getElementById('carrito-button');
     const contentDiv = document.getElementById('content');
     const carritoCount = document.getElementById('carrito-count');
+    const navMenu = document.getElementById('nav-menu');
 
     // Estado del carrito
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -33,18 +33,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Eventos de navegación
-    menuButton.addEventListener('click', () => loadComponent('components/menu.html', tiendaEvents));
     tiendaButton.addEventListener('click', () => {
+        navMenu.style.display = 'none';
         loadComponent('components/tienda.html', tiendaEvents);
     });
-    aboutButton.addEventListener('click', () => loadComponent('components/about.html'));
+    aboutButton.addEventListener('click', () => {
+        navMenu.style.display = 'none';
+        loadComponent('components/about.html');
+    });
     carritoButton.addEventListener('click', () => {
+        navMenu.style.display = 'none';
         loadComponent('components/carrito.html', mostrarCarrito);
     });
 
     // Toggle del menú al hacer clic
     const hamburgerBtn = document.getElementById('hamburger-btn');
-    const navMenu = document.getElementById('nav-menu');
+    // const navMenu = document.getElementById('nav-menu');
 
     hamburgerBtn.addEventListener('click', () => {
         // alterna entre mostrar y ocultar el menú
@@ -195,4 +199,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Inicializar contador
     actualizarCarritoCount();
+});
+
+// Al cargar la página, desplegar tienda por defecto:
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('tienda-button').click();
 });
